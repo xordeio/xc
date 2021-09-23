@@ -1,0 +1,2 @@
+echo "xc"
+ls -al
