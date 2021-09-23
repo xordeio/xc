@@ -27,3 +27,8 @@ Usage:
   Predefined short-codes:
     1 = update
 ```
+
+## Scripts collection
+
+Please check scripts collection repo for more info:
+[https://github.com/xordeio/xc/tree/main/cmd](https://github.com/xordeio/xc/tree/main/cmd)
