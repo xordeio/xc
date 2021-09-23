@@ -4,7 +4,7 @@ CMD=$1
 SELF=$0
 
 if [ "$TERM" = xterm ] || [ "$TERM" = xterm-256color ]; then 
-    TERM=xterm-256color; 
+    export TERM=xterm-256color; 
     COLOR_NC='\e[0m' # No Color
     COLOR_BLACK='\e[0;30m'
     COLOR_GRAY='\e[1;30m'
@@ -27,7 +27,9 @@ fi
 ### show help if no arguments
 if [ $# -eq 0 ]; then
   printf "${COLOR_RED}Error: No arguments supplied${COLOR_NC}\n\n" >&2
-  cat << EOF
+  printf "\
+${COLOR_WHITE}POSIX-compliant collection of scripts for systems administration${COLOR_NC}
+
 Usage:
   xc <short-code>|<code>
 
@@ -43,7 +45,7 @@ Usage:
 
   Predefined short-codes:
     1 = update
-EOF
+"
   exit 1
 fi
 
@@ -62,7 +64,7 @@ fi
 CMD_REPO=https://raw.githubusercontent.com/xordeio/xc/main/cmd/$CMD.sh?$(date +%s)
 printf "Getting $CMD_REPO...\n"
 CMD_CODE=$(curl -H 'Cache-Control: no-cache' -s $CMD_REPO)
-printf "Please confirm you want to run this code:\n\n$CMD_CODE\n\n(y/n)?"
+printf "${COLOR_YELLOW}Please confirm you want to run this code:\n\n${COLOR_GREEN}$CMD_CODE${COLOR_NC}\n\n(y/n)?"
 
 old_stty_cfg=$(stty -g)
 stty raw -echo; answer=$(head -c 1); stty $old_stty_cfg
