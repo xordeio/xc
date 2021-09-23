@@ -1,1 +1,3 @@
+# Description: Install glances and configure to run on tty1 (instead of login prompt).
+# After installation use Alt-F2..F4 to switch to other tty's for login.
 apt install -y glances; mkdir -p /etc/systemd/system/getty@tty1.service.d; echo "[Service]" > /etc/systemd/system/getty@tty1.service.d/override.conf; echo "ExecStart=" >> /etc/systemd/system/getty@tty1.service.d/override.conf; echo "ExecStart=-/usr/bin/python3 /usr/bin/glances" >> /etc/systemd/system/getty@tty1.service.d/override.conf; echo "StandardInput=tty"  >> /etc/systemd/system/getty@tty1.service.d/override.conf; echo "StandardOutput=tty"  >> /etc/systemd/system/getty@tty1.service.d/override.conf; systemctl daemon-reload; systemctl restart getty@tty1.service

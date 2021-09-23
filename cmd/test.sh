@@ -1,5 +1,2 @@
-XC_DESC="Just a test script"
-do() {
-    echo "xc"
-    ls -al
-}
+# Description: This is a test script
+echo "inline"

@@ -41,7 +41,6 @@ fi
 CMD_REPO=https://raw.githubusercontent.com/xordeio/xc/main/cmd/$CMD.sh?$(date +%s)
 printf "Getting $CMD_REPO...\n"
 CMD_CODE=$(curl -H 'Cache-Control: no-cache' -s $CMD_REPO)
-
 printf "Please confirm you want to run this code:\n\n$CMD_CODE\n\n(y/n)?"
 
 old_stty_cfg=$(stty -g)
