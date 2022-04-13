@@ -66,7 +66,12 @@ printf "Getting $CMD_REPO...\n"
 CMD_CODE=$(curl --fail -H 'Cache-Control: no-cache' -s $CMD_REPO 2>&1)
 
 if [ $? -ne 0 ]; then
-    printf "${COLOR_RED}Error:$CMD_CODE${COLOR_NC}"
+    case $? in
+        22) ERROR=Command not found
+        6) ERROR=Network error
+        *) ERROR=Error code $?
+    esac
+    printf "${COLOR_RED}Error: $ERROR${COLOR_NC}\n"
     exit 2
 fi
 
